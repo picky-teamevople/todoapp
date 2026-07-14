@@ -30,6 +30,13 @@ export function addTodo(todos, { text, categoryId, id, createdAt } = {}) {
   return [...todos, newTodo];
 }
 
+/** 빈 문자열(공백만 포함)이면 저장을 차단하고 원본 배열을 그대로 반환한다(addTodo와 동일 정책). */
+export function updateTodo(todos, id, text) {
+  const trimmed = (text ?? "").trim();
+  if (!trimmed) return todos;
+  return todos.map((todo) => (todo.id === id ? { ...todo, text: trimmed } : todo));
+}
+
 export function toggleTodo(todos, id) {
   return todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo));
 }

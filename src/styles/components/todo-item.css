@@ -108,3 +108,27 @@
 .todo-item--completed .todo-item__tag {
   opacity: var(--opacity-disabled);
 }
+
+/* 인라인 수정 모드 — 진입 시 옅은 Dark Cocoa 틴트 */
+.todo-item--editing {
+  background-color: color-mix(in srgb, var(--color-accent-default) 6%, var(--color-surface-default));
+}
+
+.todo-item__text-input {
+  width: 100%;
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-input);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+}
+
+.todo-item__text-input:focus {
+  outline: none;
+  border-color: var(--color-accent-default);
+  box-shadow: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-accent-default) 12%, transparent);
+}

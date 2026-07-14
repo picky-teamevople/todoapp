@@ -6,6 +6,7 @@
 import {
   CATEGORY_IDS,
   addTodo,
+  updateTodo,
   toggleTodo,
   deleteTodo,
   deleteCompleted,
@@ -78,9 +79,58 @@ function createTodoItemElement(todo) {
 
   li.querySelector(".checkbox__input").addEventListener("change", () => handleToggle(todo.id));
   li.querySelector('[data-action="delete"]').addEventListener("click", () => handleDelete(todo.id));
-  // 인라인 수정(더블클릭)은 이번 구현 범위(순수 로직 함수 8종)에 없어 버튼만 배치하고 로직은 연결하지 않았다.
+  li.querySelector('[data-action="edit"]').addEventListener("click", () => enterEditMode(li, todo));
+  li.querySelector(".todo-item__text").addEventListener("dblclick", () => enterEditMode(li, todo));
 
   return li;
+}
+
+/**
+ * 인라인 수정 모드 진입 — 텍스트 <p>를 <input>으로 바꿔 포커스한다.
+ * 저장/취소는 전부 네이티브 keydown/blur로 처리한다(문서 전역 클릭 리스너 불필요):
+ *   Enter  → input.blur()로 저장을 위임
+ *   Escape → 취소 플래그를 세우고 render()로 원복(빈 문자열은 addTodo와 동일하게 저장 차단)
+ *   blur   → 취소 플래그가 없으면 updateTodo 호출 후 저장
+ */
+function enterEditMode(li, todo) {
+  const textEl = li.querySelector(".todo-item__text");
+  if (!textEl) return; // 이미 편집 중
+
+  li.classList.add("todo-item--editing");
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "todo-item__text-input";
+  input.value = todo.text;
+  input.setAttribute("aria-label", "할 일 내용 수정");
+
+  textEl.replaceWith(input);
+  input.focus();
+  input.select();
+
+  let cancelled = false;
+
+  const commit = () => {
+    state.todos = updateTodo(state.todos, todo.id, input.value);
+    persist();
+    render();
+  };
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      input.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      cancelled = true;
+      render();
+    }
+  });
+
+  input.addEventListener("blur", () => {
+    if (cancelled) return;
+    commit();
+  });
 }
 
 function createCategoryGroupElement(categoryId, items) {
