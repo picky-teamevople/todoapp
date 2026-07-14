@@ -1,0 +1,52 @@
+/* 카테고리 그룹 헤더 — 목록을 카테고리별로 묶어 보여줄 때의 섹션 헤더 */
+
+.category-group-header {
+  --pill-accent: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.category-group-header__dot {
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: 50%;
+  background-color: var(--pill-accent);
+  flex-shrink: 0;
+}
+
+.category-group-header__label {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-heading-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading-sm);
+  letter-spacing: var(--letter-spacing-heading-sm);
+  text-transform: uppercase;
+  color: var(--pill-accent);
+}
+
+.category-group-header__count {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-caption);
+  color: var(--color-text-tertiary);
+}
+
+.category-group-header--work {
+  --pill-accent: var(--color-category-work);
+}
+
+.category-group-header--personal {
+  --pill-accent: var(--color-category-personal);
+}
+
+.category-group-header--meeting {
+  --pill-accent: var(--color-category-meeting);
+}
+
+.category-group-header--etc {
+  --pill-accent: var(--color-category-etc);
+}

@@ -1,0 +1,132 @@
+/* Design Tokens — CONTEXT.md + docs/design-tokens.md 최종 채택값 기준 */
+/* 네이밍: --[카테고리]-[속성]-[상태] (예: --color-accent-default, --color-accent-hover) */
+
+:root {
+  /* ---------- Color / Background & Surface ---------- */
+  --color-bg-default: #f7f3ec;
+  --color-bg-sidebar: #150502;
+  --color-surface-default: #ede6d8;
+  --color-surface-alt: #efe7dc;
+  --color-surface-elevated: #fff8f1;
+
+  /* ---------- Color / Border ---------- */
+  --color-border-default: #d4c3be;
+  --color-border-subtle: rgba(212, 195, 190, 0.3);
+
+  /* ---------- Color / Text ---------- */
+  --color-text-primary: #311b14;
+  --color-text-secondary: #504441;
+  --color-text-tertiary: #8c7365;
+  --color-text-disabled: #504441;
+  --color-text-inverse: #ffffff;
+  --color-text-inverse-muted: rgba(255, 255, 255, 0.7);
+
+  /* ---------- Color / Accent (Primary Action) ---------- */
+  --color-accent-default: #311b14;
+  --color-accent-hover: #4a2e22;
+  --color-accent-on: #ffffff;
+
+  /* ---------- Color / Feedback ---------- */
+  --color-success-default: #6b7a5e;
+  --color-danger-default: #d67d5c;
+
+  /* ---------- Color / Category (CONTEXT.md 4종, 노션 원본 색상 유지 — 사유는 카테고리 pill 구현 시 명시) ---------- */
+  --color-category-work: #7a6a5e;
+  --color-category-personal: #6b7a5e;
+  --color-category-meeting: #a87c5a;
+  --color-category-etc: #9c9184;
+
+  /* ---------- Color / Neutral Tag Chip (피그마 실제 태그 칩 형태 참조용) ---------- */
+  --color-tag-neutral-bg: #e3dbd0;
+  --color-tag-neutral-text: #8c7365;
+
+  /* ---------- Typography / Font Family ---------- */
+  --font-family-display: "Source Serif 4", "Pretendard", serif;
+  --font-family-body: "Hanken Grotesk", "Pretendard", -apple-system, "Segoe UI", sans-serif;
+
+  /* ---------- Typography / Font Size ---------- */
+  --font-size-display: 48px;
+  --font-size-heading-lg: 32px;
+  --font-size-heading-md: 24px;
+  --font-size-heading-sm: 14px;
+  --font-size-body-lg: 18px;
+  --font-size-body: 16px;
+  --font-size-label: 14px;
+  --font-size-caption: 12px;
+
+  /* ---------- Typography / Font Weight ---------- */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ---------- Typography / Line Height ---------- */
+  --line-height-display: 56px;
+  --line-height-stat: 48px;
+  --line-height-heading-lg: 40px;
+  --line-height-heading-md: 32px;
+  --line-height-heading-sm: 16px;
+  --line-height-body-lg: 28px;
+  --line-height-body: 24px;
+  --line-height-label: 16px;
+  --line-height-caption: 16px;
+
+  /* ---------- Typography / Letter Spacing ---------- */
+  --letter-spacing-display: -0.96px;
+  --letter-spacing-heading-sm: 0.7px;
+  --letter-spacing-label: 1.4px;
+  --letter-spacing-normal: 0;
+
+  /* ---------- Spacing (docs/design-tokens.md 4/8/12/16/24/32/48/80px, 오름차순으로 재번호) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+
+  /* ---------- Border Width ---------- */
+  --border-width-default: 1px;
+  --border-width-emphasis: 2px;
+
+  /* ---------- Border Radius ---------- */
+  --radius-input: 8px;
+  --radius-button: 4px;
+  --radius-button-compact: 2px;
+  --radius-card: 8px;
+  --radius-pill-filter: 18px;
+  --radius-badge: 2px;
+  --radius-checkbox: 4px;
+  --radius-avatar: 12px;
+  --radius-progress: 12px;
+
+  /* ---------- Shadow ---------- */
+  --shadow-card: 0px 4px 6px rgba(49, 27, 20, 0.04);
+  --shadow-modal: 0px 8px 24px rgba(49, 27, 20, 0.08);
+
+  /* ---------- Opacity ---------- */
+  --opacity-disabled: 0.6;
+
+  /* ---------- Motion ---------- */
+  --transition-duration-fast: 150ms;
+  --transition-duration-base: 200ms;
+  --transition-easing-default: ease-out;
+
+  /* ---------- Size ---------- */
+  --size-checkbox: 20px;
+  --size-touch-target-min: 44px;
+  --size-input-height: 44px;
+  --size-tab-height: 36px;
+  --size-bar-height: 40px;
+  --size-avatar-sm: 32px;
+  --size-avatar-md: 40px;
+  --size-avatar-lg: 96px;
+
+  /* ---------- Breakpoint / Container ---------- */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --container-tablet-max: 640px;
+  --container-desktop-max: 720px;
+}

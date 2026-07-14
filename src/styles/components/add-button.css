@@ -1,0 +1,39 @@
+/* 추가 버튼 — 기본 / hover 상태 */
+
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 64px;
+  height: var(--size-input-height);
+  padding-inline: var(--space-5);
+  border: none;
+  border-radius: var(--radius-button);
+  background-color: var(--color-accent-default);
+  color: var(--color-accent-on);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-heading-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-duration-fast) var(--transition-easing-default);
+}
+
+.add-button:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.add-button:focus-visible {
+  outline: var(--border-width-default) solid var(--color-accent-default);
+  outline-offset: var(--space-1);
+}
+
+.add-button__icon {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}

@@ -1,0 +1,57 @@
+<ul class="todo-list">
+  <!-- 할 일 아이템 — 미완료 -->
+  <li class="todo-item">
+    <label class="checkbox">
+      <input type="checkbox" class="checkbox__input" aria-label="할 일 완료 표시" />
+      <span class="checkbox__box">
+        <svg class="checkbox__icon" viewBox="0 0 12 10" aria-hidden="true">
+          <path d="M1 5L4.5 8.5L11 1" />
+        </svg>
+      </span>
+    </label>
+    <div class="todo-item__content">
+      <p class="todo-item__text">Q4 전략 문서 마무리하기</p>
+      <span class="category-pill category-pill--work todo-item__tag">업무</span>
+    </div>
+    <div class="todo-item__actions">
+      <button type="button" class="todo-item__action" aria-label="수정">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M11.3 1.7a1.5 1.5 0 0 1 2.1 2.1L5.5 11.7l-2.8.9.9-2.8Z" />
+        </svg>
+      </button>
+      <button type="button" class="todo-item__action todo-item__action--delete" aria-label="삭제">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3 4h10M6 4V2.5A.5.5 0 0 1 6.5 2h3a.5.5 0 0 1 .5.5V4M4.5 4l.6 8.5a1 1 0 0 0 1 .9h3.8a1 1 0 0 0 1-.9L12 4" />
+        </svg>
+      </button>
+    </div>
+  </li>
+
+  <!-- 할 일 아이템 — 완료 -->
+  <li class="todo-item todo-item--completed">
+    <label class="checkbox">
+      <input type="checkbox" class="checkbox__input" aria-label="할 일 완료 표시" checked />
+      <span class="checkbox__box">
+        <svg class="checkbox__icon" viewBox="0 0 12 10" aria-hidden="true">
+          <path d="M1 5L4.5 8.5L11 1" />
+        </svg>
+      </span>
+    </label>
+    <div class="todo-item__content">
+      <p class="todo-item__text">아침 명상하기</p>
+      <span class="category-pill category-pill--personal todo-item__tag">개인</span>
+    </div>
+    <div class="todo-item__actions">
+      <button type="button" class="todo-item__action" aria-label="수정">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M11.3 1.7a1.5 1.5 0 0 1 2.1 2.1L5.5 11.7l-2.8.9.9-2.8Z" />
+        </svg>
+      </button>
+      <button type="button" class="todo-item__action todo-item__action--delete" aria-label="삭제">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3 4h10M6 4V2.5A.5.5 0 0 1 6.5 2h3a.5.5 0 0 1 .5.5V4M4.5 4l.6 8.5a1 1 0 0 0 1 .9h3.8a1 1 0 0 0 1-.9L12 4" />
+        </svg>
+      </button>
+    </div>
+  </li>
+</ul>

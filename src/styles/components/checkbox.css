@@ -1,0 +1,65 @@
+/* Checkbox — 기본(미완료) / 완료 상태 */
+
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-checkbox);
+  height: var(--size-checkbox);
+  cursor: pointer;
+}
+
+.checkbox__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: var(--border-width-emphasis) solid var(--color-text-tertiary);
+  border-radius: var(--radius-checkbox);
+  background-color: transparent;
+  transition:
+    background-color var(--transition-duration-fast) var(--transition-easing-default),
+    border-color var(--transition-duration-fast) var(--transition-easing-default);
+}
+
+.checkbox__icon {
+  width: 60%;
+  height: 60%;
+  opacity: 0;
+  transform: scale(0.5);
+  stroke: var(--color-accent-on);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    opacity var(--transition-duration-fast) var(--transition-easing-default),
+    transform var(--transition-duration-fast) var(--transition-easing-default);
+}
+
+.checkbox__input:checked + .checkbox__box {
+  background-color: var(--color-accent-default);
+  border-color: var(--color-accent-default);
+}
+
+.checkbox__input:checked + .checkbox__box .checkbox__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checkbox__input:focus-visible + .checkbox__box {
+  outline: var(--border-width-default) solid var(--color-accent-default);
+  outline-offset: var(--space-1);
+}

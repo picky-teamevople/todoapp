@@ -1,0 +1,74 @@
+/* 입력창 + 카테고리 셀렉터 — 기본 / focus 상태 */
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.input-bar__category-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.input-bar__category-chevron {
+  position: absolute;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%);
+  width: 10px;
+  height: 6px;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.input-bar__category-chevron path {
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.input-bar__category,
+.input-bar__text {
+  height: var(--size-input-height);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-input);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  padding-inline: var(--space-4);
+  transition:
+    border-color var(--transition-duration-fast) var(--transition-easing-default),
+    box-shadow var(--transition-duration-fast) var(--transition-easing-default);
+}
+
+.input-bar__category {
+  width: 120px;
+  /* 네이티브 화살표는 브라우저/OS가 위젯으로 그려서 padding으로 위치 제어가 안 되는 경우가 많아
+     appearance:none으로 없애고, 옆의 .input-bar__category-chevron(커스텀 SVG)로 대체한다. */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-inline-end: var(--space-7);
+}
+
+.input-bar__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.input-bar__text::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.input-bar__category:focus,
+.input-bar__text:focus {
+  outline: none;
+  border-color: var(--color-accent-default);
+  box-shadow: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-accent-default) 12%, transparent);
+}

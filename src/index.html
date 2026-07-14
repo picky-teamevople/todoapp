@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>할 일 목록</title>
+<link rel="stylesheet" href="styles/tokens.css" />
+<link rel="stylesheet" href="styles/components/checkbox.css" />
+<link rel="stylesheet" href="styles/components/category-pill.css" />
+<link rel="stylesheet" href="styles/components/input-bar.css" />
+<link rel="stylesheet" href="styles/components/add-button.css" />
+<link rel="stylesheet" href="styles/components/filter-tab.css" />
+<link rel="stylesheet" href="styles/components/todo-item.css" />
+<link rel="stylesheet" href="styles/components/category-group-header.css" />
+<link rel="stylesheet" href="styles/components/empty-state.css" />
+<link rel="stylesheet" href="styles/components/bottom-bar.css" />
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background-color: var(--color-bg-default);
+    font-family: var(--font-family-body);
+  }
+  .app-shell {
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+  .app-header {
+    padding-block: var(--space-5);
+  }
+  .app-header__title {
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-display);
+    line-height: var(--line-height-display);
+    letter-spacing: var(--letter-spacing-display);
+    color: var(--color-text-primary);
+  }
+  .app-section {
+    margin-top: var(--space-4);
+  }
+  .app-section--bottom {
+    margin-top: var(--space-5);
+  }
+  .filter-tabs + .filter-tabs {
+    margin-top: var(--space-3);
+  }
+  .category-group + .category-group {
+    margin-top: var(--space-3);
+  }
+  .app-note {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-tertiary);
+  }
+
+  /* 반응형 브레이크포인트: CSS 변수는 @media 조건 안에서 참조할 수 없어 부득이 --breakpoint-tablet/--breakpoint-desktop과
+     동일한 값(768px/1024px)을 여기 직접 명시합니다. 값 자체는 tokens.css와 항상 일치시켜야 합니다. */
+  @media (min-width: 768px) {
+    .app-shell {
+      max-width: var(--container-tablet-max);
+      padding-inline: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    .app-shell {
+      max-width: var(--container-desktop-max);
+      background-color: var(--color-surface-default);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-7);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1 class="app-header__title">할 일 목록</h1>
+    </header>
+
+    <section class="app-section">
+      <div class="input-bar">
+        <div class="input-bar__category-wrapper">
+          <select id="new-todo-category" class="input-bar__category" aria-label="카테고리 선택">
+            <option value="">기타</option>
+            <option value="work">업무</option>
+            <option value="personal">개인</option>
+            <option value="meeting">회의/미팅</option>
+          </select>
+          <svg class="input-bar__category-chevron" viewBox="0 0 10 6" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" />
+          </svg>
+        </div>
+        <input
+          id="new-todo-text"
+          type="text"
+          class="input-bar__text"
+          placeholder="할 일을 입력하세요"
+          aria-label="할 일 입력"
+        />
+        <button id="add-todo-button" type="button" class="add-button">
+          <svg class="add-button__icon" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M7 1V13M1 7H13" />
+          </svg>
+          추가
+        </button>
+      </div>
+      <p id="new-todo-error" class="app-note" role="alert" hidden>할 일 내용을 입력해주세요.</p>
+    </section>
+
+    <section class="app-section">
+      <div class="filter-tabs" role="tablist" aria-label="상태 필터">
+        <button type="button" role="tab" aria-selected="true" class="filter-tab" data-status-filter="all">전체</button>
+        <button type="button" role="tab" aria-selected="false" class="filter-tab" data-status-filter="active">진행중</button>
+        <button type="button" role="tab" aria-selected="false" class="filter-tab" data-status-filter="completed">완료</button>
+      </div>
+      <div class="filter-tabs" role="group" aria-label="카테고리 필터">
+        <button type="button" class="filter-tab filter-tab--category filter-tab--work" aria-pressed="false" data-category-filter="work">업무</button>
+        <button type="button" class="filter-tab filter-tab--category filter-tab--personal" aria-pressed="false" data-category-filter="personal">개인</button>
+        <button type="button" class="filter-tab filter-tab--category filter-tab--meeting" aria-pressed="false" data-category-filter="meeting">회의/미팅</button>
+        <button type="button" class="filter-tab filter-tab--category filter-tab--etc" aria-pressed="false" data-category-filter="etc">기타</button>
+      </div>
+    </section>
+
+    <section class="app-section">
+      <div id="todo-list-root"></div>
+
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-state__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32">
+            <rect x="6" y="4" width="20" height="24" rx="2" />
+            <path d="M11 12h10M11 17h10M11 22h6" />
+          </svg>
+        </div>
+        <p class="empty-state__text">할 일을 추가해보세요</p>
+      </div>
+    </section>
+
+    <section class="app-section app-section--bottom">
+      <div class="bottom-bar">
+        <button id="delete-completed-button" type="button" class="bottom-bar__action">완료된 항목 일괄 삭제</button>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
